@@ -83,11 +83,14 @@ export async function createTestPayload(
   const payload = await getPayload({ config, key: connectionString })
 
   const destroy = async () => {
-    if (payload.db.destroy) {
-      await payload.db.destroy()
+    try {
+      if (payload.db.destroy) {
+        await payload.db.destroy()
+      }
+    } finally {
+      await dropIsolatedDatabase(basePgUrl, isolatedDatabase)
+      rmSync(tempDir, { recursive: true, force: true })
     }
-    await dropIsolatedDatabase(basePgUrl, isolatedDatabase)
-    rmSync(tempDir, { recursive: true, force: true })
   }
 
   return { payload, tempDir, destroy }

@@ -72,6 +72,7 @@ const result = spawnSync(cmd[0], cmd.slice(1), { stdio: 'inherit', env })
 const code = result.status ?? 1
 
 if (startedContainer) {
+  sleepMs(750)
   docker(['rm', '-f', config.containerName], false)
 }
 

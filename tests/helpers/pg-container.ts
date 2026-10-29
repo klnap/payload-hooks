@@ -39,11 +39,7 @@ export const dropIsolatedDatabase = async (baseUrl: string, database: string): P
   const client = new Client({ connectionString: adminUrl })
   await client.connect()
   try {
-    await client.query(
-      `SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = $1 AND pid <> pg_backend_pid()`,
-      [database]
-    )
-    await client.query(`DROP DATABASE IF EXISTS "${database}"`)
+    await client.query(`DROP DATABASE IF EXISTS "${database}" WITH (FORCE)`)
   } finally {
     await client.end()
   }
