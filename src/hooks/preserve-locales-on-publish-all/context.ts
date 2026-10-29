@@ -1,0 +1,2 @@
+export const PRESERVE_LOCALES_SNAPSHOTS_CONTEXT_KEY = 'preserveLocalesOnPublishAllSnapshots'
+export const PRESERVE_LOCALES_EDITED_PATCH_CONTEXT_KEY = 'preserveLocalesOnPublishAllEditedPatch'

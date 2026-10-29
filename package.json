@@ -1,0 +1,156 @@
+{
+  "name": "@klnap/payload-hooks",
+  "version": "0.2.0",
+  "description": "Reusable Payload CMS collection hooks and admin plugins",
+  "license": "MIT",
+  "author": "klnap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/klnap/payload-hooks"
+  },
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#hooks/*": "./src/*"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/exports/index.ts",
+      "default": "./src/exports/index.ts"
+    },
+    "./reject-publish-when-required-fields-empty": {
+      "types": "./src/hooks/reject-publish-when-required-fields-empty/index.ts",
+      "default": "./src/hooks/reject-publish-when-required-fields-empty/index.ts"
+    },
+    "./reject-unpublish": {
+      "types": "./src/hooks/reject-unpublish/index.ts",
+      "default": "./src/hooks/reject-unpublish/index.ts"
+    },
+    "./reject-slug-change-when-published": {
+      "types": "./src/hooks/reject-slug-change-when-published/index.ts",
+      "default": "./src/hooks/reject-slug-change-when-published/index.ts"
+    },
+    "./stamp-published-at": {
+      "types": "./src/hooks/stamp-published-at/index.ts",
+      "default": "./src/hooks/stamp-published-at/index.ts"
+    },
+    "./reject-delete-when-published": {
+      "types": "./src/hooks/reject-delete-when-published/index.ts",
+      "default": "./src/hooks/reject-delete-when-published/index.ts"
+    },
+    "./request": {
+      "types": "./src/request/index.ts",
+      "default": "./src/request/index.ts"
+    },
+    "./localized-delete-impact": {
+      "types": "./src/plugins/localized-delete/impact/index.ts",
+      "default": "./src/plugins/localized-delete/impact/index.ts"
+    },
+    "./require-localized-delete-confirmation": {
+      "types": "./src/plugins/localized-delete/hook/index.ts",
+      "default": "./src/plugins/localized-delete/hook/index.ts"
+    },
+    "./client": {
+      "types": "./src/exports/client.ts",
+      "default": "./src/exports/client.ts"
+    },
+    "./plugin": {
+      "types": "./src/exports/plugin.ts",
+      "default": "./src/exports/plugin.ts"
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "bun test tests/unit tests/architecture && bun run test:int",
+    "check:exports": "bun run scripts/check-exports.ts",
+    "check:boundaries": "depcruise --config dependency-cruiser.config.mjs --output-type err-long src",
+    "lint": "biome check .",
+    "build": "tsc -p tsconfig.build.json --noEmit",
+    "build:dist": "tsc -p tsconfig.build.json && tsc-alias -p tsconfig.build.json && mkdir -p dist/plugins/localized-delete/admin && cp src/plugins/localized-delete/admin/confirm-body.scss dist/plugins/localized-delete/admin/confirm-body.scss",
+    "prepack": "bun run build:dist",
+    "postpack": "rm -rf dist",
+    "test:unit": "bun test tests/unit",
+    "test:int": "node ./scripts/with-ephemeral-postgres.mjs -- bun test tests/integration --max-concurrency 1",
+    "test:arch": "bun test tests/architecture"
+  },
+  "peerDependencies": {
+    "@payloadcms/ui": "3.90.2",
+    "next": ">=15.0.0",
+    "payload": "3.90.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@payloadcms/db-postgres": "3.90.2",
+    "@payloadcms/ui": "3.90.2",
+    "@types/bun": "^1.2.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@types/pg": "^8.11.11",
+    "@biomejs/biome": "2.5.14",
+    "dependency-cruiser": "^18.2.0",
+    "payload": "3.90.2",
+    "pg": "^8.13.1",
+    "tsc-alias": "^1.9.7",
+    "typescript": "5.7.3"
+  },
+  "publishConfig": {
+    "access": "public",
+    "exports": {
+      ".": {
+        "types": "./dist/exports/index.d.ts",
+        "import": "./dist/exports/index.js"
+      },
+      "./reject-publish-when-required-fields-empty": {
+        "types": "./dist/hooks/reject-publish-when-required-fields-empty/index.d.ts",
+        "import": "./dist/hooks/reject-publish-when-required-fields-empty/index.js"
+      },
+      "./reject-unpublish": {
+        "types": "./dist/hooks/reject-unpublish/index.d.ts",
+        "import": "./dist/hooks/reject-unpublish/index.js"
+      },
+      "./reject-slug-change-when-published": {
+        "types": "./dist/hooks/reject-slug-change-when-published/index.d.ts",
+        "import": "./dist/hooks/reject-slug-change-when-published/index.js"
+      },
+      "./stamp-published-at": {
+        "types": "./dist/hooks/stamp-published-at/index.d.ts",
+        "import": "./dist/hooks/stamp-published-at/index.js"
+      },
+      "./reject-delete-when-published": {
+        "types": "./dist/hooks/reject-delete-when-published/index.d.ts",
+        "import": "./dist/hooks/reject-delete-when-published/index.js"
+      },
+      "./request": {
+        "types": "./dist/request/index.d.ts",
+        "import": "./dist/request/index.js"
+      },
+      "./localized-delete-impact": {
+        "types": "./dist/plugins/localized-delete/impact/index.d.ts",
+        "import": "./dist/plugins/localized-delete/impact/index.js"
+      },
+      "./require-localized-delete-confirmation": {
+        "types": "./dist/plugins/localized-delete/hook/index.d.ts",
+        "import": "./dist/plugins/localized-delete/hook/index.js"
+      },
+      "./client": {
+        "types": "./dist/exports/client.d.ts",
+        "import": "./dist/exports/client.js"
+      },
+      "./plugin": {
+        "types": "./dist/exports/plugin.d.ts",
+        "import": "./dist/exports/plugin.js"
+      }
+    }
+  },
+  "engines": {
+    "node": "^24.0.0",
+    "bun": ">=1.4.0"
+  }
+}

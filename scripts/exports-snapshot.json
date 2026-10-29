@@ -1,0 +1,52 @@
+{
+  ".": [
+    "buildLocalizedDeleteImpact",
+    "formatLocalizedDeleteSummaryLines",
+    "isDraftSave",
+    "isExplicitUnpublishAll",
+    "isLocalizedDeleteConfirmed",
+    "isPublishAllLocales",
+    "isUnpublishAttempt",
+    "LOCALIZED_DELETE_CONFIRMED_CONTEXT_KEY",
+    "mirrorPublishAllLocalesFlagsToReq",
+    "preserveLocalesOnPublishAll",
+    "rejectDeleteWhenPublished",
+    "rejectDeleteWhenPublishedCollection",
+    "rejectPublishWhenRequiredFieldsEmpty",
+    "rejectSlugChangeWhenPublished",
+    "rejectUnpublish",
+    "restoreLocalesAfterPublishAll",
+    "requireLocalizedDeleteConfirmation",
+    "stampPublishedAt",
+    "withLocalizedDeleteConfirmed"
+  ],
+  "./reject-unpublish": ["isUnpublishAttempt", "rejectUnpublish"],
+  "./reject-publish-when-required-fields-empty": ["rejectPublishWhenRequiredFieldsEmpty"],
+  "./reject-slug-change-when-published": ["rejectSlugChangeWhenPublished"],
+  "./stamp-published-at": ["stampPublishedAt"],
+  "./reject-delete-when-published": [
+    "rejectDeleteWhenPublished",
+    "rejectDeleteWhenPublishedCollection"
+  ],
+  "./request": [
+    "isDraftSave",
+    "isExplicitUnpublishAll",
+    "isLocalizedDeleteConfirmed",
+    "isPublishAllLocales",
+    "LOCALIZED_DELETE_CONFIRMED_CONTEXT_KEY",
+    "withLocalizedDeleteConfirmed"
+  ],
+  "./localized-delete-impact": ["buildLocalizedDeleteImpact", "formatLocalizedDeleteSummaryLines"],
+  "./require-localized-delete-confirmation": [
+    "isLocalizedDeleteConfirmationHook",
+    "markLocalizedDeleteConfirmationHook",
+    "requireLocalizedDeleteConfirmation"
+  ],
+  "./client": ["LocalizedDeleteEditMenuItem", "LocalizedDeleteListBulkButton"],
+  "./plugin": [
+    "deleteAllLocalesConfirmation",
+    "enhanceCollectionForDeleteAllLocalesConfirmation",
+    "localizedDeleteEditMenuItemPath",
+    "localizedDeleteListBulkButtonPath"
+  ]
+}
